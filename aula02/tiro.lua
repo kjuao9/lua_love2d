@@ -20,12 +20,14 @@ end
 function Tiro:update(dt)
     for i, t in ipairs(Jogador.tiros) do
         t.y = t.y - t.vel * dt
-    end   
+        if t.y < 0 then
+            table.remove(Jogador.tiros,i)
+        end    
+    end
 end    
 
 function Tiro:draw()
     for i, t in ipairs(Jogador.tiros) do
         love.graphics.draw(t.img,t.x,t.y,0,1,1,t.cx,t.cy)
     end    
-	
 end    
